@@ -13,13 +13,20 @@
 #
 #
 #
-
-
+import requests
 from bs4 import BeautifulSoup
+
 category = 'obshhie-znaniya' #будет определяться в запросе обработчика сообщений
-url = 'https://new-science.ru/category/obshhie-znaniya/' + category
+url = 'https://new-science.ru/category/' + category
+
+req = requests.get(url)
+soup = BeautifulSoup(req.text, "lxml")
+elements = soup.find_all('div', {'class': 'post-details'})
 print(url)
-with open (url, 'r') as file:
-    contents = file.read()
-soup = BeautifulSoup(contents, 'lxml')
-print(soup)
+texts = soup.find_all('p', {'class': 'post-excerpt'})
+titles = soup.find_all('h2', {'class': 'post-title'})
+
+for i in range(len(titles)):
+    print(titles[i])
+    print(texts[i])
+    print()
