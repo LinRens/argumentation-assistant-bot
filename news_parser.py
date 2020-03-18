@@ -10,9 +10,6 @@
 # функция get_article(url, category)
 # словарь или список? содержит: ссылка, заголовок, краткое описание, ссылка на картинку?
 # список из N статей, N - лимит одной страницы. на каждой кнопке написано сколько статей осталось
-#
-#
-#
 import requests
 from bs4 import BeautifulSoup
 
@@ -21,12 +18,16 @@ url = 'https://new-science.ru/category/' + category
 
 req = requests.get(url)
 soup = BeautifulSoup(req.text, "lxml")
-elements = soup.find_all('div', {'class': 'post-details'})
-print(url)
+# прописать функцию def get_head(url):
+everything = soup.find_all('div', {'class': 'post-details'})
+what = []
+# РАБОТАЕТ НЕ ТРОГАТЬ
 texts = soup.find_all('p', {'class': 'post-excerpt'})
-titles = soup.find_all('h2', {'class': 'post-title'})
+title = soup.find_all('h2', {'class': 'post-title'})
+href = soup.find_all('a', {'class': 'more-link button'})
 
-for i in range(len(titles)):
-    print(titles[i])
-    print(texts[i])
+for i in range(len(texts)):
+    print(title[i].string)
+    print(texts[i].string)
+    print(href[i].get('href'))
     print()
