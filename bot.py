@@ -169,7 +169,7 @@ categories = {'Антропология': 'antropologiya', 'Археология
               'Общие знания': 'obshhie-znaniya', 'Робототехника': 'robototehnika',
               'Здоровье и медицина': 'medicina', 'Моя планета': 'moya-planeta'}
 
-
+#
 # Обработчик нажатий на кнопки
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
